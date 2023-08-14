@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import EtudiantService from '../services/etudiant.service';
-/*
-import { Outlet, Link } from "react-router-dom";
-import { ObjectId } from 'mongodb'; // Assuming you're using the MongoDB driver or a similar library
-*/
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import EditIcon from '@mui/icons-material/Edit';
+import Stack from '@mui/material/Stack';
+import AddIcon from '@mui/icons-material/Add';
+import {Link} from "react-router-dom";
 
 const ListEtudiant = () => {
     const [etudiants, setEtudiants] = useState([]);
@@ -21,6 +31,8 @@ const ListEtudiant = () => {
         }
 
     };
+
+
     const handleDelete = async (etudiantId) => {
         console.log('Deleting etudiant with id', etudiantId);
         try {
@@ -38,34 +50,46 @@ const ListEtudiant = () => {
     return (
         <div className="container">
             <h2>Liste des étudiants</h2>
-            <table className="table">
-                <thead className="thead-dark">
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Adresse</th>
-                    <th scope="col">Tel</th>
-                    <th scope="col">Classe</th>
-                </tr>
-                </thead>
-                <tbody>
-                {etudiants && etudiants.map((etudiant,id) => (
-                    <tr key={id}>{etudiant.id}
-                        <td>{id}</td>
-                        <td>{etudiant.nom}</td>
-                        <td>{etudiant.email}</td>
-                        <td>{etudiant.adresse}</td>
-                        <td>{etudiant.tel}</td>
-                        <td>{etudiant.classe ? etudiant.classe.name : 'Aucune'}</td>
-                        <td>
-                            <button className="btn btn-sm btn-primary mr-2">Modifier</button>
-                            <button onClick={() => handleDelete(etudiant.id)}></button>
-                        </td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+            <Paper>
+                <Table>
+                    <TableHead>
+                        <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/AddEtudiant" >
+                            Ajout
+                        </Button>
+                        <TableRow>
+                            <TableCell>id</TableCell>
+                            <TableCell>Nom</TableCell>
+                            <TableCell>Email</TableCell>
+                            <TableCell>Adresse</TableCell>
+                            <TableCell>Tel</TableCell>
+                            <TableCell>Classe</TableCell>
+                            <TableCell>Actions</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {etudiants && etudiants.map((etudiant, id) => (
+                            <TableRow key={id}>
+                                <TableCell>{id}</TableCell>
+                                <TableCell>{etudiant.nom}</TableCell>
+                                <TableCell>{etudiant.email}</TableCell>
+                                <TableCell>{etudiant.adresse}</TableCell>
+                                <TableCell>{etudiant.tel}</TableCell>
+                                <TableCell>{etudiant.classe ? etudiant.classe.name : 'Aucune'}</TableCell>
+                             <TableCell>
+                                 <Stack direction="row" spacing={2}>
+                                     <Button variant="text"   color="error"startIcon={<DeleteIcon />} onClick={() => handleDelete(etudiant._id)}>
+                                         supprimer
+                                     </Button>
+                                     <Button variant="text"  color="warning" endIcon={<EditIcon />} >
+                                         modifier
+                                     </Button>
+                                 </Stack>
+                             </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </Paper>
         </div>
     );
 };
