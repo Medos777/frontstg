@@ -38,7 +38,7 @@ const ListEtudiant = () => {
     const handleDelete = async (classeId) => {
         console.log('Deleting classe with id', classeId);
         try {
-            await ClasseService.deleteEtudiant(classeId);
+            await ClasseService.deleteClasse(classeId);
             fetchClasses();
             if (classeId) {
                 console.log(`Deleting classe with id ${classeId}`);
@@ -67,12 +67,17 @@ const ListEtudiant = () => {
             <h2>Liste des classes</h2>
             <Paper>
                 <TableContainer ref={tableRef}>
+                    <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/addclasses" >
+                        Ajout
+                    </Button>
                     <Table>
                         <TableHead>
+
                             <TableRow>
                                 <TableCell>id</TableCell>
                                 <TableCell>Nom</TableCell>
                                 <TableCell>Etudiants</TableCell>
+                                <TableCell>Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -97,6 +102,16 @@ const ListEtudiant = () => {
                                                     ))}
                                                 </List>
                                             )}
+                                        </TableCell>
+                                        <TableCell>
+                                            <Stack direction="row" spacing={2}>
+                                                <Button variant="text"   color="error"startIcon={<DeleteIcon />} onClick={() => handleDelete(classe._id)}>
+                                                    supprimer
+                                                </Button>
+                                                <Button variant="text"  color="warning" endIcon={<EditIcon />} >
+                                                    modifier
+                                                </Button>
+                                            </Stack>
                                         </TableCell>
                                     </TableRow>
                                 ))}

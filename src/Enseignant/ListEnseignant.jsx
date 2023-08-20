@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import EtudiantService from '../services/etudiant.service';
+import EnseignantService from '../services/EnseignantService';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -15,17 +15,17 @@ import Stack from '@mui/material/Stack';
 import AddIcon from '@mui/icons-material/Add';
 import {Link} from "react-router-dom";
 
-const ListEtudiant = () => {
-    const [etudiants, setEtudiants] = useState([]);
+const ListEnseignant = () => {
+    const [enseignants, setEnseignans] = useState([]);
 
     useEffect(() => {
-        fetchEtudiants();
+        fetchEnseignants();
     }, []);
 
-    const fetchEtudiants = async () => {
+    const fetchEnseignants = async () => {
         try {
-            const response = await EtudiantService.getAll();
-            setEtudiants(response.data);
+            const response = await EnseignantService.getAll();
+            setEnseignans(response.data);
         } catch (error) {
             console.log(error);
         }
@@ -33,7 +33,7 @@ const ListEtudiant = () => {
     };
 
 
-    const handleDelete = async (etudiantId) => {
+   /* const handleDelete = async (etudiantId) => {
         console.log('Deleting etudiant with id', etudiantId);
         try {
             await EtudiantService.deleteEtudiant(etudiantId);
@@ -45,46 +45,53 @@ const ListEtudiant = () => {
         } catch (error) {
             console.log(error);
         }
-    };
+    };*/
 
     return (
         <div className="container">
-            <h2>Liste des étudiants</h2>
+            <h2>Liste des enseignants</h2>
             <Paper>
                 <Table>
                     <TableHead>
-                        <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/AddEtudiants" >
-                            Ajout
-                        </Button>
+
                         <TableRow>
                             <TableCell>id</TableCell>
                             <TableCell>Nom</TableCell>
                             <TableCell>Email</TableCell>
                             <TableCell>Adresse</TableCell>
                             <TableCell>Tel</TableCell>
-                            <TableCell>Classe</TableCell>
+                            <TableCell>Photo</TableCell>
+
                             <TableCell>Actions</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {etudiants && etudiants.map((etudiant, id) => (
+                        {enseignants && enseignants.map((enseignant, id) => (
                             <TableRow key={id}>
                                 <TableCell>{id}</TableCell>
-                                <TableCell>{etudiant.nom}</TableCell>
-                                <TableCell>{etudiant.email}</TableCell>
-                                <TableCell>{etudiant.adresse}</TableCell>
-                                <TableCell>{etudiant.tel}</TableCell>
-                                <TableCell>{etudiant.classe ? etudiant.classe.name : 'Aucune'}</TableCell>
-                             <TableCell>
-                                 <Stack direction="row" spacing={2}>
-                                     <Button variant="text"   color="error"startIcon={<DeleteIcon />} onClick={() => handleDelete(etudiant._id)}>
-                                         supprimer
-                                     </Button>
-                                     <Button variant="text"  color="warning" endIcon={<EditIcon />} >
-                                         modifier
-                                     </Button>
-                                 </Stack>
-                             </TableCell>
+                                <TableCell>{enseignant.nom}</TableCell>
+                                <TableCell>{enseignant.email}</TableCell>
+                                <TableCell>{enseignant.adresse}</TableCell>
+                                <TableCell>{enseignant.tel}</TableCell>
+                                <TableCell>
+                                    {enseignant.photo && (
+                                        <img
+                                            src={enseignant.photo}
+                                            alt={`${enseignant.nom} - Photo`}
+                                            style={{ maxWidth: '100px' }}
+                                        />
+                                    )}
+                            </TableCell>
+                                {/*<TableCell>
+                                    <Stack direction="row" spacing={2}>
+                                        <Button variant="text"   color="error"startIcon={<DeleteIcon />} onClick={() => handleDelete(etudiant._id)}>
+                                            supprimer
+                                        </Button>
+                                        <Button variant="text"  color="warning" endIcon={<EditIcon />} >
+                                            modifier
+                                        </Button>
+                                    </Stack>
+                                </TableCell>*/}
                             </TableRow>
                         ))}
                     </TableBody>
@@ -94,4 +101,4 @@ const ListEtudiant = () => {
     );
 };
 
-export default ListEtudiant;
+export default ListEnseignant;

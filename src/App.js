@@ -11,7 +11,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ListEtudiant from './Etudiant/ListEtudiant';
 import AddEtudiant from './Etudiant/AddEtudiant';
 import ListClasse from './Classe/ListClasse';
+import ListEnseignant from './Enseignant/ListEnseignant';
+import AddEnseignant from './Enseignant/AddEnseignant';
 import AddClasse from "./Classe/AddClasse";
+import AddMatieres from "./Matieres/AddMatieres";
+import ListMatieres from "./Matieres/ListMatieres";
 
 const App = () => {
   return (
@@ -33,6 +37,10 @@ const App = () => {
             <Button color="inherit" component={Link} to="/AddEtudiants">ajout Etudiant</Button>
             <Button color="inherit" component={Link} to="/classes">classes</Button>
             <Button color="inherit" component={Link} to="/addclasses">Ajout classes</Button>
+            <Button color="inherit" component={Link} to="/enseignants"> Enseignant</Button>
+            <Button color="inherit" component={Link} to="/Addenseignants"> Ajout Enseignant</Button>
+            <Button color="inherit" component={Link} to="/AddMatieres"> Ajout matieres</Button>
+            <Button color="inherit" component={Link} to="/ListMatieres"> matieres</Button>
           </Toolbar>
         </AppBar>
 
@@ -42,6 +50,10 @@ const App = () => {
           <Route path="/AddEtudiants" element={<AddEtudiant />} />
           <Route path="/classes" element={<ListClasse />} />
           <Route path="/addclasses" element={<AddClasse />} />
+          <Route path="/enseignants" element={<ListEnseignant />} />
+          <Route path="/Addenseignants" element={<AddEnseignant />} />
+          <Route path="/AddMatieres" element={<AddMatieres />} />
+          <Route path="/ListMatieres" element={<ListMatieres />} />
         </Routes>
       </Router>
   );
