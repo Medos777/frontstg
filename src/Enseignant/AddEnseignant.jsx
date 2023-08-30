@@ -1,23 +1,29 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState } from 'react';
 import EnseignantService from "../services/EnseignantService";
-import {ToastContainer,toast} from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
-import ListEnseignant from "./ListEnseignant";
 
 const AddEnseignant = () => {
     const navigate = useNavigate();
-    const [matricule, setMatricule] = useState('');
     const [nom, setNom] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [adresse, setAdresse] = useState('');
     const [tel, setTel] = useState('');
     const [photo, setPhoto] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const saveData = async (e) => {
         e.preventDefault();
 
+     /*   if (!photo) {
+            toast.error('Veuillez sélectionner une photo.');
+            return;
+        }*/
+
         try {
+            setLoading(true);
+
             const formData = new FormData();
             formData.append('nom', nom);
             formData.append('email', email);
@@ -30,16 +36,37 @@ const AddEnseignant = () => {
             toast.success('Enseignant ajouté avec succès!');
             navigate('/enseignants');
         } catch (error) {
-            console.log('Error:', error);
-            toast.error('Une erreur s\'est produite lors de l\'ajout de l\'enseignant.');
+            console.error('Erreur:', error);
+
+            if (error.response) {
+                // Handle specific error messages from the backend if available
+                if (error.response.data.error) {
+                    toast.error(error.response.data.error);
+                } else {
+                    toast.error('Une erreur s\'est produite lors de l\'ajout de l\'enseignant.');
+                }
+            } else {
+                toast.error('Une erreur s\'est produite lors de la communication avec le serveur.');
+            }
+        } finally {
+            setLoading(false);
+            // Clear the form fields
+            setNom('');
+            setEmail('');
+            setPassword('');
+            setAdresse('');
+            setTel('');
+            setPhoto(null);
         }
     }
+
     return (
         <div className='container mt-5'>
             <div className='card mx-auto' style={{ maxWidth: '600px' }}>
                 <h5 className='card-header'>Ajout Enseignant</h5>
                 <div className='card-body'>
                     <form>
+
                         <div className='form-group'>
                             <label htmlFor='nom'>Nom</label>
                             <input
@@ -111,7 +138,14 @@ const AddEnseignant = () => {
                             />
                         </div>
 
-                        <button className='btn btn-primary' onClick={(e)=> saveData(e)}>Enregistrer</button>
+
+                        <button
+                            className='btn btn-primary'
+                            onClick={saveData}
+                            disabled={loading} // Disable the button while loading
+                        >
+                            {loading ? 'Enregistrement en cours...' : 'Enregistrer'}
+                        </button>
                     </form>
                 </div>
             </div>

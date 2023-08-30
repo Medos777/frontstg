@@ -39,10 +39,10 @@ const ListMatieres = () => {
 
     return (
         <div className="container">
-            <h2>Liste des matieres</h2>
+            <h2>Liste des Matieres</h2>
             <Paper>
                 <TableContainer ref={tableRef}>
-                    <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/addclasses" >
+                    <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/addMatieres" >
                         Ajout
                     </Button>
                     <Table>
@@ -50,8 +50,8 @@ const ListMatieres = () => {
 
                             <TableRow>
                                 <TableCell>id</TableCell>
-                                <TableCell>Nom</TableCell>
-                                <TableCell>code</TableCell>
+                                <TableCell>libelle</TableCell>
+                                <TableCell>matiere</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

@@ -21,7 +21,7 @@ const AddMatieres = () => {
             .then(res => {
                 console.log('avec succee');
                 console.log(matiere)
-                navigate('/classes');
+                navigate('/ListMatieres');
 
             }).catch(error => {
             console.log('erreur', error);
