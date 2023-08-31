@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -18,6 +18,7 @@ import AddMatieres from "./Matieres/AddMatieres";
 import ListMatieres from "./Matieres/ListMatieres";
 import ListCours from "./Cours/ListCours";
 import AddCours from "./Cours/AddCours";
+import Dashboard from "./Dashbord/Dashboard";
 
 const App = () => {
   return (
@@ -33,7 +34,8 @@ const App = () => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              université privée          </Typography>
+              université privée
+            </Typography>
           </Toolbar>
         </AppBar>
 
@@ -42,41 +44,47 @@ const App = () => {
               component="nav"
               sx={{ width: '200px', flexShrink: 0, bgcolor: '#f5f5f5' }}
           >
-            <Button color="inherit" component={Link} to="/etudiants">
-              Etudiants
-            </Button>
-            <Button color="inherit" component={Link} to="/AddEtudiants">
-              Ajout Etudiant
-            </Button>
-            <Button color="inherit" component={Link} to="/classes">
-              Classes
-            </Button>
-            <Button color="inherit" component={Link} to="/addclasses">
-              Ajout classes
-            </Button>
-            <Button color="inherit" component={Link} to="/enseignants">
-              Enseignant
-            </Button>
-            <Button color="inherit" component={Link} to="/Addenseignants">
-              Ajout Enseignant
-            </Button>
-            <Button color="inherit" component={Link} to="/AddMatieres">
-              Ajout matieres
-            </Button>
-            <Button color="inherit" component={Link} to="/ListMatieres">
-              Matieres
-            </Button>
-            <Button color="inherit" component={Link} to="/Cours">
-              Cours
-            </Button>
-            <Button color="inherit" component={Link} to="/AddCours">
-              ADDCours
-            </Button>
+
+            <Box sx={{ padding: '10px' }}>
+              <Button color="inherit" component={Link} to="/etudiants">
+                Etudiants
+              </Button>
+            </Box>
+
+            <Box sx={{ padding: '10px' }}>
+              <Button color="inherit" component={Link} to="/classes">
+                Classes
+              </Button>
+            </Box>
+
+            <Box sx={{ padding: '10px' }}>
+              <Button color="inherit" component={Link} to="/enseignants">
+                Enseignant
+              </Button>
+            </Box>
+
+
+            <Box sx={{ padding: '10px' }}>
+              <Button color="inherit" component={Link} to="/ListMatieres">
+                Matieres
+              </Button>
+            </Box>
+            <Box sx={{ padding: '10px' }}>
+              <Button color="inherit" component={Link} to="/Cours">
+                Cours
+              </Button>
+            </Box>
+
+            <Box sx={{ padding: '10px' }}>
+              <Button color="inherit" component={Link} to="/Dashboard">
+                Dashboard
+              </Button>
+            </Box>
           </Box>
 
           <Box sx={{ flexGrow: 1, p: 3 }}>
             <Routes>
-              <Route path="/" element={<Navigate to="/etudiants" />} />
+              <Route path="/" element={<Navigate to="/Dashboard" />} />
               <Route path="/etudiants" element={<ListEtudiant />} />
               <Route path="/AddEtudiants" element={<AddEtudiant />} />
               <Route path="/classes" element={<ListClasse />} />
@@ -87,6 +95,7 @@ const App = () => {
               <Route path="/ListMatieres" element={<ListMatieres />} />
               <Route path="/Cours" element={<ListCours />} />
               <Route path="/AddCours" element={<AddCours />} />
+              <Route path="/Dashboard" element={<Dashboard />} />
             </Routes>
           </Box>
         </Box>

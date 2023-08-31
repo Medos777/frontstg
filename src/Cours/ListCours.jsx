@@ -53,7 +53,7 @@ const ListCours = () => {
             <Paper>
                 <Table>
                     <TableHead>
-                        <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/AddEtudiants" >
+                        <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/AddCours" >
                             Ajout
                         </Button>
                         <TableRow>

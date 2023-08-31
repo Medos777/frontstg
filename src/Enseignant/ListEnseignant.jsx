@@ -50,8 +50,11 @@ const ListEnseignant = () => {
     return (
         <div className="container">
             <h2>Liste des enseignants</h2>
-            <Paper>
+            <Paper>  <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/Addenseignants" >
+                Ajout
+            </Button>
                 <Table>
+
                     <TableHead>
 
                         <TableRow>
