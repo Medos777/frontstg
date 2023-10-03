@@ -76,6 +76,7 @@ const ListEtudiant = () => {
                             <TableRow>
                                 <TableCell>id</TableCell>
                                 <TableCell>Nom</TableCell>
+                                <TableCell>Le nombre d'étudiants</TableCell>
                                 <TableCell>Etudiants</TableCell>
                                 <TableCell>Actions</TableCell>
                             </TableRow>
@@ -86,6 +87,7 @@ const ListEtudiant = () => {
                                     <TableRow key={id}>
                                         <TableCell>{id}</TableCell>
                                         <TableCell>{classe.name}</TableCell>
+                                        <TableCell>{classe.lengthEtudiant}</TableCell>
                                         <TableCell>
                                             <Button
                                                 variant="outlined"

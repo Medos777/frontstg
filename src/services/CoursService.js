@@ -10,4 +10,3 @@ const deleteCours =  coursId =>{
     return httpClient.delete(`/cours/${coursId}`);
 }
 export  default {getAll,create,deleteCours}
-
