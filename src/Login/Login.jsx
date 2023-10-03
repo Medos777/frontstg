@@ -1,4 +1,3 @@
-
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import loginservice from "../services/LoginService";
@@ -12,6 +11,13 @@ const Login = () => {
     const [login, setLogin] = useState([]);
 
     useEffect(() => {
+        // Get the token from local storage.
+        const token = localStorage.getItem('token');
+
+        // If the token exists, set it in the HTTP client's default headers.
+        if (token) {
+            loginservice.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        }
     }, []);
 
 
@@ -25,6 +31,11 @@ const Login = () => {
             .then(res => {
                 console.log('avec succee');
                 console.log(login)
+                console.log(res.data)
+
+                // Set the token in local storage.
+                localStorage.setItem('token', res.data.token);
+
                 navigate('/classes');
 
             }).catch(error => {
@@ -84,4 +95,3 @@ const Login = () => {
 };
 
 export default Login;
-

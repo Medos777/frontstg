@@ -9,11 +9,11 @@ const AuthGuard = ({ children }) => {
         const token = localStorage.getItem("token");
         if (!token) {
             setIsLoggedIn(false);
-            navigate("/login");
+            navigate("/");
         } else {
             setIsLoggedIn(true);
         }
-    }, []);
+    }, [navigate]);
 
     return isLoggedIn ? children : null;
 };
