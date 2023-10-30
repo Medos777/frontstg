@@ -14,12 +14,20 @@ import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import AddIcon from '@mui/icons-material/Add';
 import {Link} from "react-router-dom";
+import Accueil from "../Dashbord/Acceuil";
+import jwt_decode from "jwt-decode";
 
 const ListCours = () => {
     const [cours, setCours] = useState([]);
+    const [role, setRole] = useState("");
 
     useEffect(() => {
+        const token = localStorage.getItem("token");
+        const decodedToken = jwt_decode(token);
+        setRole(decodedToken.role);
+        console.log(role);
         fetchCours();
+
     }, []);
 
     const fetchCours = async () => {
@@ -53,9 +61,12 @@ const ListCours = () => {
             <Paper>
                 <Table>
                     <TableHead>
-                        <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/AddCours" >
+                        {role === "admin" && (
+
+                            <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/AddCours" >
                             Ajout
                         </Button>
+                            )}
                         <TableRow>
                             <TableCell>id</TableCell>
                             <TableCell>libelle</TableCell>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from 'recharts';
 import ClasseService from '../services/ClasseService';
+import Accueil from "./Acceuil";
 
 class Dashboard extends Component {
     state = {

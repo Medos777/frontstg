@@ -14,6 +14,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import AddIcon from '@mui/icons-material/Add';
 import {Link} from "react-router-dom";
+import Accueil from "../Dashbord/Acceuil";
+import './grid.css';
 
 const ListEnseignant = () => {
     const [enseignants, setEnseignans] = useState([]);
@@ -33,75 +35,64 @@ const ListEnseignant = () => {
     };
 
 
-   /* const handleDelete = async (etudiantId) => {
-        console.log('Deleting etudiant with id', etudiantId);
-        try {
-            await EtudiantService.deleteEtudiant(etudiantId);
-            fetchEtudiants();
-            if (etudiantId) {
 
-                console.log(`Deleting etudiant with id ${etudiantId}`);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };*/
 
     return (
-        <div className="container">
-            <h2>Liste des enseignants</h2>
-            <Paper>  <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/Addenseignants" >
-                Ajout
-            </Button>
-                <Table>
+        <div className="parent">
+                <divs className="container">
+                    <h2>Liste des enseignants</h2>
+                    <Paper>  <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/Addenseignants" >
+                        Ajout
+                    </Button>
+                        <Table>
 
-                    <TableHead>
+                            <TableHead>
 
-                        <TableRow>
-                            <TableCell>id</TableCell>
-                            <TableCell>Nom</TableCell>
-                            <TableCell>Email</TableCell>
-                            <TableCell>Adresse</TableCell>
-                            <TableCell>Tel</TableCell>
-                            <TableCell>Photo</TableCell>
+                                <TableRow>
+                                    <TableCell>id</TableCell>
+                                    <TableCell>Nom</TableCell>
+                                    <TableCell>Email</TableCell>
+                                    <TableCell>Adresse</TableCell>
+                                    <TableCell>Tel</TableCell>
+                                    <TableCell>Photo</TableCell>
 
-                            <TableCell>Actions</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {enseignants && enseignants.map((enseignant, id) => (
-                            <TableRow key={id}>
-                                <TableCell>{id}</TableCell>
-                                <TableCell>{enseignant.nom}</TableCell>
-                                <TableCell>{enseignant.email}</TableCell>
-                                <TableCell>{enseignant.adresse}</TableCell>
-                                <TableCell>{enseignant.tel}</TableCell>
-                                <TableCell>
-                                    {enseignant.photo && (
-                                        <img
-                                            src={enseignant.photo}
-                                            alt={`${enseignant.nom} - Photo`}
-                                            style={{ maxWidth: '100px' }}
-                                        />
-                                    )}
-                            </TableCell>
-                                {/*<TableCell>
-                                    <Stack direction="row" spacing={2}>
-                                        <Button variant="text"   color="error"startIcon={<DeleteIcon />} onClick={() => handleDelete(etudiant._id)}>
-                                            supprimer
-                                        </Button>
-                                        <Button variant="text"  color="warning" endIcon={<EditIcon />} >
-                                            modifier
-                                        </Button>
-                                    </Stack>
-                                </TableCell>*/}
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </Paper>
+                                    <TableCell>Actions</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {enseignants && enseignants.map((enseignant, id) => (
+                                    <TableRow key={id}>
+                                        <TableCell>{id}</TableCell>
+                                        <TableCell>{enseignant.nom}</TableCell>
+                                        <TableCell>{enseignant.email}</TableCell>
+                                        <TableCell>{enseignant.adresse}</TableCell>
+                                        <TableCell>{enseignant.tel}</TableCell>
+                                        <TableCell>
+                                            {enseignant.photo && (
+                                                <img
+                                                    src={enseignant.photo}
+                                                    alt={`${enseignant.nom} - Photo`}
+                                                    style={{ maxWidth: '100px' }}
+                                                />
+                                            )}
+                                        </TableCell>
+                                        <TableCell>
+                                        <Stack direction="row" spacing={2}>
+
+                                            <Button variant="text"  color="warning" endIcon={<EditIcon />} >
+                                                modifier
+                                            </Button>
+                                        </Stack>
+                                    </TableCell>/
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </Paper>
+                </divs>
         </div>
     );
+
 };
 
 export default ListEnseignant;

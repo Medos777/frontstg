@@ -3,6 +3,7 @@ import EtudiantService from "../services/etudiant.service";
 import ClasseService from '../services/ClasseService';
 import {ToastContainer,toast} from "react-toastify";
 import { useNavigate } from 'react-router-dom';
+import Accueil from "../Dashbord/Acceuil";
 
 const AddClasse = () => {
     const navigate = useNavigate();
@@ -41,6 +42,7 @@ const AddClasse = () => {
         });
     }
     return (
+<Accueil>
         <div className='container mt-5'>
             <div className='card mx-auto' style={{ maxWidth: '600px' }}>
                 <h5 className='card-header'>Ajout classe</h5>
@@ -64,6 +66,7 @@ const AddClasse = () => {
             </div>
             <ToastContainer />
         </div>
+</Accueil>
     );
 };
 

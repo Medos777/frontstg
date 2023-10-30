@@ -3,6 +3,7 @@ import EtudiantService from "../services/etudiant.service";
 import ClasseService from '../services/ClasseService';
 import {ToastContainer,toast} from "react-toastify";
 import { useNavigate } from 'react-router-dom';
+import Accueil from "../Dashbord/Acceuil";
 
 const AddEtudiant = () => {
     const navigate = useNavigate();

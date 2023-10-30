@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import EnseignantService from "../services/EnseignantService";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
+import Accueil from "../Dashbord/Acceuil";
 
 const AddEnseignant = () => {
     const navigate = useNavigate();
@@ -61,6 +62,7 @@ const AddEnseignant = () => {
     }
 
     return (
+
         <div className='container mt-5'>
             <div className='card mx-auto' style={{ maxWidth: '600px' }}>
                 <h5 className='card-header'>Ajout Enseignant</h5>

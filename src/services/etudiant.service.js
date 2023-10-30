@@ -10,5 +10,8 @@ const create = (classeId, etudiantData) => {
 const deleteEtudiant =  etudiantId =>{
     return httpClient.delete(`/etudiants/${etudiantId}`);
 }
-export  default {getAll,create,deleteEtudiant}
+const getEtudiantById =  etudiantId =>{
+    return axios.get(`/etudiants/${etudiantId}`);
+}
+export  default {getAll,create,deleteEtudiant,getEtudiantById}
 

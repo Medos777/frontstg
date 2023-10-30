@@ -16,13 +16,19 @@ import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
+import jwt_decode from "jwt-decode";
 
 const ListEtudiant = () => {
     const [classes, setClasses] = useState([]);
     const [expandedRow, setExpandedRow] = useState(null);
     const tableRef = useRef(null);
+    const [role, setRole] = useState("");
 
     useEffect(() => {
+        const token = localStorage.getItem("token");
+        const decodedToken = jwt_decode(token);
+        setRole(decodedToken.role);
+        console.log(role);
         fetchClasses();
     }, []);
 
@@ -63,13 +69,17 @@ const ListEtudiant = () => {
     };
 
     return (
+
         <div className="container">
             <h2>Liste des classes</h2>
             <Paper>
                 <TableContainer ref={tableRef}>
-                    <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/addclasses" >
+                    {role === "admin" && (
+
+                        <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/addclasses" >
                         Ajout
                     </Button>
+                        )}
                     <Table>
                         <TableHead>
 

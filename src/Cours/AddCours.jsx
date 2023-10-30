@@ -4,6 +4,7 @@ import MatieresService from '../services/MatieresService';
 import EnseignantService from '../services/EnseignantService';
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
+import Accueil from "../Dashbord/Acceuil";
 
 const AddCours = () => {
     const navigate = useNavigate();
@@ -73,6 +74,7 @@ const AddCours = () => {
     };
 
     return (
+<Accueil>
         <div className='container mt-5'>
             <div className='card mx-auto' style={{ maxWidth: '600px' }}>
                 <h5 className='card-header'>Ajout Cours</h5>
@@ -140,6 +142,7 @@ const AddCours = () => {
             </div>
             <ToastContainer/>
         </div>
+</Accueil>
     );
 };
 

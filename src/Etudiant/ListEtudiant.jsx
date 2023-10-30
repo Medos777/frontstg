@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useParams} from 'react';
 import EtudiantService from '../services/etudiant.service';
 import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -13,9 +13,10 @@ import SendIcon from '@mui/icons-material/Send';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import AddIcon from '@mui/icons-material/Add';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const ListEtudiant = () => {
+    const navigate = useNavigate();
     const [etudiants, setEtudiants] = useState([]);
 
     useEffect(() => {
@@ -29,23 +30,29 @@ const ListEtudiant = () => {
         } catch (error) {
             console.log(error);
         }
-
     };
-
 
     const handleDelete = async (etudiantId) => {
         console.log('Deleting etudiant with id', etudiantId);
         try {
             await EtudiantService.deleteEtudiant(etudiantId);
             fetchEtudiants();
-            if (etudiantId) {
-
-                console.log(`Deleting etudiant with id ${etudiantId}`);
-            }
         } catch (error) {
             console.log(error);
         }
     };
+
+    const EtudiantClickHandler = ({ etudiantId }) => {
+        const navigate = useNavigate();
+
+        const handleClick = () => {
+            navigate(`/etudiants/${etudiantId}`);
+        };
+
+        return <Link to={`/etudiants/${etudiantId}`} endIcon={<SendIcon />}>Voir détail</Link>;
+    };
+
+
 
     return (
         <div className="container">
@@ -53,9 +60,8 @@ const ListEtudiant = () => {
             <Paper>
                 <Table>
                     <TableHead>
-                        <Button variant="text"  color="success" endIcon={<AddIcon />} component={Link} to="/AddEtudiants" >
-                            Ajout
-                        </Button>
+
+
                         <TableRow>
                             <TableCell>id</TableCell>
                             <TableCell>Nom</TableCell>
@@ -75,16 +81,18 @@ const ListEtudiant = () => {
                                 <TableCell>{etudiant.adresse}</TableCell>
                                 <TableCell>{etudiant.tel}</TableCell>
                                 <TableCell>{etudiant.classe ? etudiant.classe.name : 'Aucune'}</TableCell>
-                             <TableCell>
-                                 <Stack direction="row" spacing={2}>
-                                     <Button variant="text"   color="error"startIcon={<DeleteIcon />} onClick={() => handleDelete(etudiant._id)}>
-                                         supprimer
-                                     </Button>
-                                     <Button variant="text"  color="warning" endIcon={<EditIcon />} >
-                                         modifier
-                                     </Button>
-                                 </Stack>
-                             </TableCell>
+                                <TableCell>
+                                    <Stack direction="row" spacing={2}>
+                                        <Button variant="text" color="error" startIcon={<DeleteIcon />} onClick={() => handleDelete(etudiant._id)}>
+                                            supprimer
+                                        </Button>
+                                        <Button variant="text" color="warning" endIcon={<EditIcon />} >
+                                            modifier
+                                        </Button>
+                                        <Button variant="text" color="warning" endIcon={<EditIcon />} />
+                                        <EtudiantClickHandler etudiantId={etudiant._id} />
+                                    </Stack>
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
