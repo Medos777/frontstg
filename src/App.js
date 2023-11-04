@@ -22,12 +22,16 @@ import ReclamationDetail from "./Reclamation/ReclamationDetail";
 import EtudiantDetail from "./Etudiant/EtudiantDetail";
 import ListReclamation from "./Reclamation/ListReclamation";
 import Navbar from "./Navbar/Navbar";
+import GetFactureByEtudiant from "./Facture/GetFacutreByEtudiant";
+//import GetFactureByEtudiant from "./Facture/GetFacutreByEtudiant";
 
 
 const App = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    useEffect(() => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+   // const etudiantId = localStorage.getItem("userId");
+    //const etudiantId ="64d7f2af4bee7be3ef8f818e"
+        useEffect(() => {
         const isLoggedIn = localStorage.getItem("isLoggedIn");
         console.log("isLoggedIn:", isLoggedIn);
         if (isLoggedIn) {
@@ -37,6 +41,7 @@ const App = () => {
 
 
     return (
+
         <>
             {isLoggedIn && <Navbar />}            <div>
                 <Routes>
@@ -55,10 +60,13 @@ const App = () => {
                     <Route path="/Cours" element={<AuthGuard><ListCours /></AuthGuard>} />
                     <Route path="/AddCours" element={<AuthGuard><AddCours /></AuthGuard>} />
                     <Route path="/Dashboard" element={<Dashboard /> }/>
-                    <Route path="/Factures" element={<AuthGuard><AddFacture /></AuthGuard>} />
-                    <Route path="/etudiants/:etudiantId" element={<EtudiantDetail />} />
+                    <Route path="/AddFactures" element={<AuthGuard><AddFacture /></AuthGuard>} />
+                    <Route path="/Factures" element={<AuthGuard><GetFactureByEtudiant /></AuthGuard>} />
+                    <Route path="/etudiants/:id" component={EtudiantDetail} />
+
                 </Routes>
             </div>
+
         </>
     );
 

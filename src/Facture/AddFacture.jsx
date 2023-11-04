@@ -4,7 +4,7 @@ import ClasseService from '../services/ClasseService';
 import EtudiantService from '../services/etudiant.service';
 
 const AddFacture = () => {
-    const [etudiant, setEtudiant] = useState('');
+    const [etudiant, setEtudiant] = useState({ _id: '' });
     const [filiere, setFiliere] = useState('');
     const [niveau, setNiveau] = useState('');
     const [fraisInscription, setFraisInscription] = useState('');
@@ -47,7 +47,7 @@ const AddFacture = () => {
         switch (name) {
 
 
-            
+
             case 'etudiant':
                 setEtudiant(value);
                 break;
@@ -73,6 +73,8 @@ const AddFacture = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+
 
         const factureData = {
             etudiant,
@@ -110,20 +112,22 @@ const AddFacture = () => {
 
                 <div className="form-group">
                     <label htmlFor="etudiant">Etudiant:</label>
-                    <select
-                        name="etudiant"
-                        id="etudiant"
-                        value={etudiant}
-                        onChange={handleChange}
-                        className="form-control"
-                    >
-                        <option value="">Select an etudiant</option>
-                        {etudiants.map((etudiant) => (
-                            <option key={etudiant._id} value={etudiant.matricule}>
-                                {etudiant.name}
-                            </option>
-                        ))}
-                    </select>
+                    {etudiants.length > 0 && (
+                        <select
+                            name="etudiant"
+                            id="etudiant"
+                            value={etudiant._id}
+                            onChange={handleChange}
+                            className="form-control"
+                        >
+                            <option value="">Select an etudiant</option>
+                            {etudiants.map((etudiant) => (
+                                <option key={etudiant._id} value={etudiant._id}>
+                                    {etudiant.nom}
+                                </option>
+                            ))}
+                        </select>
+                    )}
                 </div>
                 <div>
                     <label>Filiere:</label>

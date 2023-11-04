@@ -70,8 +70,14 @@ const Login = () => {
                 const decodedToken = jwt_decode(res.data.token);
                 console.log("Decoded Token:", decodedToken);
                 const userEmail = decodedToken.UserEmail;
-
+                const userId = decodedToken.userId;
+                console.log(userId);
+                localStorage.getItem("userId",userId);
                 console.log(userEmail);
+                setUserId(decodedToken.userId);
+                console.log(userId);
+                // Set the user ID in local storage.
+                localStorage.setItem("userId", userId);
                 setUserId(decodedToken.userId);
                 console.log(userId);
                 console.log(localStorage.getItem("isLoggedIn"));

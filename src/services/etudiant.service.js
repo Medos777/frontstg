@@ -5,7 +5,7 @@ const getAll = () => {
     return httpClient.get(('/etudiants'));
 }
 const create = (classeId, etudiantData) => {
-    return httpClient.post(`/etudiants/${classeId}`, etudiantData);
+    return axios.post(`/etudiants/${classeId}`, etudiantData);
 }
 const deleteEtudiant =  etudiantId =>{
     return httpClient.delete(`/etudiants/${etudiantId}`);

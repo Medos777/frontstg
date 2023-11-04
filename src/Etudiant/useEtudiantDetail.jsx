@@ -20,7 +20,7 @@ const useEtudiantDetail = () => {
 
         const response = await EtudiantService.getEtudiantById(etudiantId);
         setEtudiant(response.data);
-
+ 
         // Update the cache
         localStorage.setItem(`etudiant-${etudiantId}`, JSON.stringify({ ...response.data, timestamp: Date.now() }));
     };

@@ -1,26 +1,36 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'; // Import useParams
+import EtudiantService from '../services/etudiant.service';
 
 const EtudiantDetail = () => {
-    const { id } = useParams();
+    const { id } = useParams(); // Get the dynamic parameter from the URL
+    const [etudiant, setEtudiant] = useState(null);
 
-    // Assuming useEtudiantDetail fetches details based on the id
-    const etudiant = useEtudiantDetail(id);
+    useEffect(() => {
+        const fetchEtudiant = async () => {
+            try {
+                const response = await EtudiantService.getEtudiantById(id);
+                console.log('Response:', response);
 
-    if (!etudiant) {
-        return <div>Chargement...</div>;
-    }
+                setEtudiant(response.data);
+
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchEtudiant();
+    }, [id]);
 
     return (
         <div className="container">
-            <h2 aria-label="Détails de l'étudiant">Détails de l'étudiant</h2>
-            <ul>
-                <li>Nom : {etudiant.nom}</li>
-                <li>Email : {etudiant.email}</li>
-                <li>Adresse : {etudiant.adresse}</li>
-                <li>Tel : {etudiant.tel}</li>
-                <li>Classe : {etudiant.classe ? etudiant.classe.name : 'Aucune'}</li>
-            </ul>
+            {etudiant && (
+                <div>
+                    <h2>Détails de l'étudiant</h2>
+                    <p>Nom: {etudiant.nom}</p>
+                    <p>Email: {etudiant.email}</p>
+                    {/* Add more details as needed */}
+                </div>
+            )}
         </div>
     );
 };
