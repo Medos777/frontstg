@@ -1,14 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Card, CardContent, CardHeader, Typography } from '@mui/material';
+import Table from '@mui/material/Table';
+import FactureService from "../services/FactureService";
+import FactureDetail from './FactureDetail.jsx';
+import {useNavigate} from "react-router-dom";
 
-const GetAllFactures = () => {
+
+
+
+const GetFactureByEtudiant = () => {
+    const navigate = useNavigate();
+
     const [factures, setFactures] = useState([]);
+     const [selectedFacture, setSelectedFacture] = useState(null);
+
+    var etudiantId = localStorage.getItem('userId');
+    console.log(localStorage.getItem('userId'));
+    if (!etudiantId) {
+        // The etudiantId variable is undefined.
+        // Initialize it by calling the localStorage.getItem('userId') function.
+        etudiantId = localStorage.getItem('userId');
+        console.log(etudiantId);
+    }
 
     const fetchFactures = async () => {
         try {
-            const response = await axios.get('/api/factures');
-            setFactures(response.data);
+            const response = await FactureService.getAll();
+            console.log(etudiantId);
+            const filteredFactures = response.data.filter(facture => facture.etudiant === etudiantId);
+            setFactures(filteredFactures);
+            console.log(response.data);
+            console.log(filteredFactures);
         } catch (error) {
             console.log(error);
         }
@@ -18,23 +40,44 @@ const GetAllFactures = () => {
         fetchFactures();
     }, []);
 
+     const handleClickOnFacture = (facture) => {
+        setSelectedFacture(facture);
+         const stringifiedObject = JSON.stringify(facture);
+         sessionStorage.setItem("Facture",stringifiedObject);
+        navigate("/DetailFactures");
+    };
+       const FactureSelected = () => {
+        const facturesele = selectedFacture;
+        return facturesele;
+    }
+
     return (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
-            {factures.map((facture) => (
-                <Card key={facture._id}>
-                    <CardHeader title={facture.numero} />
-                    <CardContent>
-                        <Typography variant="body2" color="text.secondary">
-                            Date: {facture.date}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Total: {facture.total}
-                        </Typography>
-                    </CardContent>
-                </Card>
-            ))}
-        </Box>
+        <div>
+            <h2>All Factures for User ID: {etudiantId}</h2>
+            <Table>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                {factures.map((facture) => (
+                    <tr key={facture._id}>
+                        <td>{facture.date}</td>
+                        <td>{facture.total}</td>
+                        <td>
+                            <button onClick={() => handleClickOnFacture(facture)}>
+                                View Details
+                            </button>
+                        </td>
+                    </tr>
+                ))}
+                </tbody>
+            </Table>
+
+        </div>
     );
 };
 
-export default GetAllFactures;
+export default GetFactureByEtudiant;

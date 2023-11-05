@@ -1,0 +1,32 @@
+.card {
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    padding: 15px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #0069d9;
+    color: white;
+}
+.signature {
+    float: right;
+    margin-top: 20px;
+}

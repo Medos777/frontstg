@@ -81,7 +81,7 @@ const Login = () => {
                 setUserId(decodedToken.userId);
                 console.log(userId);
                 console.log(localStorage.getItem("isLoggedIn"));
-                navigate("/addreclamations");
+                navigate("/Dashboard");
             })
             .catch((error) => {
                 console.log("erreur", error);

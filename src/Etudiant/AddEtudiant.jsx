@@ -3,7 +3,6 @@ import EtudiantService from "../services/etudiant.service";
 import ClasseService from '../services/ClasseService';
 import {ToastContainer,toast} from "react-toastify";
 import { useNavigate } from 'react-router-dom';
-import Accueil from "../Dashbord/Acceuil";
 
 const AddEtudiant = () => {
     const navigate = useNavigate();
@@ -31,24 +30,24 @@ const AddEtudiant = () => {
         }
     };
     const saveData =(e)=> {
-    toast("ok");
+        toast("ok");
 
-    e.preventDefault();
-    const etudiant = {  nom, email, password, adresse, tel,classes};
+        e.preventDefault();
+        const etudiant = {  nom, email, password, adresse, tel,classes};
         const selectedClass = classes.find((classe) => classe._id === classId);
         const selectedClassId = selectedClass ? selectedClass._id : '';
 
         EtudiantService.create(selectedClassId, etudiant)
-        .then(res => {
-        console.log('avec succee');
-        console.log(etudiant)
-        navigate('/etudiants');
+            .then(res => {
+                console.log('avec succee');
+                console.log(etudiant)
+                navigate('/etudiants');
 
-    }).catch(error => {
-        console.log('erreur', error);
+            }).catch(error => {
+            console.log('erreur', error);
 
-    });
-}
+        });
+    }
     return (
         <div className='container mt-5'>
             <div className='card mx-auto' style={{ maxWidth: '600px' }}>
