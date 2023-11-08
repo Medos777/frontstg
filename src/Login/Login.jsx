@@ -7,8 +7,12 @@ import { useNavigate } from
 import loginservice from
 
         "../services/LoginService";
+import logModuleCss from './log.module.css';
+
 import { toast, ToastContainer } from "react-toastify";
 import jwt_decode from "jwt-decode";
+import palestineFlag from './palastine.png';
+
 
 export { logout };
 
@@ -40,7 +44,7 @@ const Login = () => {
             setIsLoggedIn(true);
 
             // Navigate to the home page.
-            navigate("/");
+            navigate("/etudiantss");
         } else {
             // The user is not logged in.
             // Set the `isLoggedIn` state variable to `false`.
@@ -97,6 +101,8 @@ const Login = () => {
             <div className='card mx-auto' style={{ maxWidth: '600px' }}>
                 <h5 className='card-header'>login</h5>
                 <div className='card-body'>
+                    <img src={palestineFlag} alt="Palestinian flag" />
+
                     <form>
                         <div className='form-group'>
                             <label htmlFor='nom'>email</label>

@@ -74,7 +74,6 @@ const AddCours = () => {
     };
 
     return (
-<Accueil>
         <div className='container mt-5'>
             <div className='card mx-auto' style={{ maxWidth: '600px' }}>
                 <h5 className='card-header'>Ajout Cours</h5>
@@ -142,7 +141,6 @@ const AddCours = () => {
             </div>
             <ToastContainer/>
         </div>
-</Accueil>
     );
 };
 

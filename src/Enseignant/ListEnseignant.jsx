@@ -83,7 +83,7 @@ const ListEnseignant = () => {
                                                 modifier
                                             </Button>
                                         </Stack>
-                                    </TableCell>/
+                                    </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>

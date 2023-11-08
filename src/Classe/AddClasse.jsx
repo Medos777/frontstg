@@ -42,7 +42,6 @@ const AddClasse = () => {
         });
     }
     return (
-<Accueil>
         <div className='container mt-5'>
             <div className='card mx-auto' style={{ maxWidth: '600px' }}>
                 <h5 className='card-header'>Ajout classe</h5>
@@ -66,7 +65,6 @@ const AddClasse = () => {
             </div>
             <ToastContainer />
         </div>
-</Accueil>
     );
 };
 
