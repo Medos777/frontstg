@@ -46,10 +46,10 @@ const ListEtudiant = () => {
         const navigate = useNavigate();
 
         const handleClick = () => {
-            navigate(`/etudiants/${etudiantId}`);
+            navigate(`/etudiants/${etudiantId}/update`);
         };
 
-        return <Link to={`/etudiants/${etudiantId}`} endIcon={<SendIcon />}>Voir détail</Link>;
+        return <Link to={`/etudiants/${etudiantId}/update`} endIcon={SendIcon}>update</Link>;
     };
 
 
@@ -86,10 +86,7 @@ const ListEtudiant = () => {
                                         <Button variant="text" color="error" startIcon={<DeleteIcon />} onClick={() => handleDelete(etudiant._id)}>
                                             supprimer
                                         </Button>
-                                        <Button variant="text" color="warning" endIcon={<EditIcon />} >
-                                            modifier
-                                        </Button>
-                                        <Button variant="text" color="warning" endIcon={<EditIcon />} />
+
                                         <EtudiantClickHandler etudiantId={etudiant._id} />
                                     </Stack>
                                 </TableCell>

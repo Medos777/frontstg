@@ -11,7 +11,17 @@ const deleteEtudiant =  etudiantId =>{
     return httpClient.delete(`/etudiants/${etudiantId}`);
 }
 const getEtudiantById =(etudiantId) =>{
-    return axios.get(`/etudiants/${etudiantId}`);
+    return httpClient.get(`/etudiants/${etudiantId}`);
 }
-export  default {getAll,create,deleteEtudiant,getEtudiantById}
+
+const update = async (etudiantId, updatedEtudiant) => {
+    try {
+        const response = await httpClient.put(`/etudiants/${etudiantId}`, updatedEtudiant);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
+export  default {getAll,create,deleteEtudiant,getEtudiantById,update}
 

@@ -24,6 +24,7 @@ import ListReclamation from "./Reclamation/ListReclamation";
 import Navbar from "./Navbar/Navbar";
 import GetFactureByEtudiant from "./Facture/GetFacutreByEtudiant";
 import FactureDetail from "./Facture/FactureDetail";
+import UpdateEtudiant from "./Etudiant/UpdateEtudiant";
 //import GetFactureByEtudiant from "./Facture/GetFacutreByEtudiant";
 
 
@@ -64,8 +65,7 @@ const App = () => {
                     <Route path="/AddFactures" element={<AuthGuard><AddFacture /></AuthGuard>} />
                     <Route path="/Factures" element={<AuthGuard><GetFactureByEtudiant /></AuthGuard>} />
                     <Route path="/DetailFactures" element={<AuthGuard><FactureDetail /></AuthGuard>} />
-                    <Route path="/etudiants/:id" component={EtudiantDetail} />
-
+                    <Route path= "/etudiants/:etudiantId/update" element={<UpdateEtudiant />} />
                 </Routes>
             </div>
 

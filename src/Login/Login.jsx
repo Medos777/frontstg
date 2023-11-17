@@ -44,7 +44,7 @@ const Login = () => {
             setIsLoggedIn(true);
 
             // Navigate to the home page.
-            navigate("/etudiantss");
+            navigate("/etudiants");
         } else {
             // The user is not logged in.
             // Set the `isLoggedIn` state variable to `false`.

@@ -9,12 +9,13 @@ import jwt_decode from "jwt-decode";
 
 const Navbar = () => {
     const [role, setRole] = useState("");
-
+    const [mail ,setMail]=  useState("");
     useEffect(() => {
         const token = localStorage.getItem("token");
         const decodedToken = jwt_decode(token);
          setRole(decodedToken.role);
         console.log(role);
+         setMail(decodedToken.UserEmail);
     }, []);
     const handleLogout = () => {
         logout();
@@ -64,9 +65,11 @@ const Navbar = () => {
                 <Button component={Link} to="/reclamations" color="inherit">
                     Réclamations
                 </Button>
+                <div>  <b>{mail} : {role}   </b>   </div>
                 <Button onClick={() => { handleLogout(); window.location.reload(); }} color="error">
-                    Logout
-                </Button>
+                  <b> Logout </b>
+
+                 </Button>
 
             </Toolbar>
         </AppBar>
