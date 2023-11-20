@@ -11,7 +11,6 @@ import logModuleCss from './log.module.css';
 
 import { toast, ToastContainer } from "react-toastify";
 import jwt_decode from "jwt-decode";
-import palestineFlag from './palastine.png';
 
 
 export { logout };
@@ -75,6 +74,7 @@ const Login = () => {
                 console.log("Decoded Token:", decodedToken);
                 const userEmail = decodedToken.UserEmail;
                 const userId = decodedToken.userId;
+                const role = decodedToken.role;
                 console.log(userId);
                 localStorage.getItem("userId",userId);
                 console.log(userEmail);
@@ -83,6 +83,7 @@ const Login = () => {
                 // Set the user ID in local storage.
                 localStorage.setItem("userId", userId);
                 setUserId(decodedToken.userId);
+                localStorage.setItem("role",role);
                 console.log(userId);
                 console.log(localStorage.getItem("isLoggedIn"));
                 navigate("/Dashboard");
@@ -101,7 +102,6 @@ const Login = () => {
             <div className='card mx-auto' style={{ maxWidth: '600px' }}>
                 <h5 className='card-header'>login</h5>
                 <div className='card-body'>
-                    <img src={palestineFlag} alt="Palestinian flag" />
 
                     <form>
                         <div className='form-group'>

@@ -5,8 +5,10 @@ import jwt_decode from "jwt-decode";
 import { Button, TextField } from '@mui/material';
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
+import {useNavigate} from "react-router-dom";
 
 const AddReclamation = () => {
+    const navigate= useNavigate();
     const [reclamationData, setReclamationData] = useState({
         admin: 'userId' ,  // Set your default admin
         ReclamationText: ' ', // Set your default text
@@ -25,6 +27,8 @@ const AddReclamation = () => {
             reclamationData.admin=userId;
             await reclamationService.create(reclamationData);
             console.log('Decoded Token:', decodedToken);
+            navigate('/reclamations');
+
 
             // Redirect or show a success message here if needed
         } catch (error) {

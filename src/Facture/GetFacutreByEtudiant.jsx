@@ -17,7 +17,6 @@ const GetFactureByEtudiant = () => {
 
     const [factures, setFactures] = useState([]);
     const [selectedFacture, setSelectedFacture] = useState(null);
-
     var etudiantId = localStorage.getItem('userId');
     console.log(localStorage.getItem('userId'));
     if (!etudiantId) {
@@ -26,10 +25,19 @@ const GetFactureByEtudiant = () => {
     }
 
     const fetchFactures = async () => {
+const role = localStorage.getItem("role");
+
         try {
+            if (role ==="admin"){
+                const response = await FactureService.getAll();
+                setFactures(response.data);
+                console.log(response.data);
+            }else{
             const response = await FactureService.getAll();
+
             const filteredFactures = response.data.filter(facture => facture.etudiant === etudiantId);
             setFactures(filteredFactures);
+            }
         } catch (error) {
             console.log(error);
         }
@@ -48,7 +56,7 @@ const GetFactureByEtudiant = () => {
 
     return (
         <div>
-            <h2>Les Factures pour: {etudiantId}</h2>
+            <h2>Les Factures pour</h2>
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>

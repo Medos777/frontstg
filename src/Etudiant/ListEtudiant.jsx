@@ -46,13 +46,21 @@ const ListEtudiant = () => {
         const navigate = useNavigate();
 
         const handleClick = () => {
+            navigate(`/etudiants/${etudiantId}/details`);
+        };
+
+        return <Link to={`/etudiants/${etudiantId}/details`} endIcon={SendIcon}>details</Link>;
+    };
+
+    const EtudiantClickHandlerUpdate = ({ etudiantId }) => {
+        const navigate = useNavigate();
+
+        const handleClick = () => {
             navigate(`/etudiants/${etudiantId}/update`);
         };
 
         return <Link to={`/etudiants/${etudiantId}/update`} endIcon={SendIcon}>update</Link>;
     };
-
-
 
     return (
         <div className="container">
@@ -88,6 +96,7 @@ const ListEtudiant = () => {
                                         </Button>
 
                                         <EtudiantClickHandler etudiantId={etudiant._id} />
+                                        <EtudiantClickHandlerUpdate etudiantId={etudiant._id} />
                                     </Stack>
                                 </TableCell>
                             </TableRow>

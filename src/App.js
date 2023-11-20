@@ -66,6 +66,7 @@ const App = () => {
                     <Route path="/Factures" element={<AuthGuard><GetFactureByEtudiant /></AuthGuard>} />
                     <Route path="/DetailFactures" element={<AuthGuard><FactureDetail /></AuthGuard>} />
                     <Route path= "/etudiants/:etudiantId/update" element={<UpdateEtudiant />} />
+                    <Route path= "/etudiants/:etudiantId/details" element={<EtudiantDetail />} />
                 </Routes>
             </div>
 
